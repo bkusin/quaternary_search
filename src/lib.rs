@@ -33,7 +33,7 @@ pub fn quaternary_search(data: &[i32], x: i32) -> Option<usize> {
     None
 }
 
-
+#[cfg(test)]
 mod test {
 
     use super::*;

@@ -1,0 +1,13 @@
+[package]
+name = "bvec"
+version = "0.1.0"
+edition = "2024"
+
+# support SIMD. This is the same as flag "-C target-cpu=native" to cargo, rustc, or in cargo.toml's [build].
+# [profile.dev]
+# target-cpu = "native"
+
+# [profile.release]
+# target-cpu = "native"
+
+[dependencies]

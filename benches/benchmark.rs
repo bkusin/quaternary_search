@@ -1,4 +1,4 @@
-use bvec::quaternary_search;
+use quaternary_search::quaternary_search;
 use criterion::{BatchSize, Criterion, criterion_group, criterion_main};
 use random::*;
 use std::hint::black_box;

@@ -1,5 +1,5 @@
 [package]
-name = "bvec"
+name = "quaternary_search"
 version = "0.1.0"
 edition = "2024"
 

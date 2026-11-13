@@ -16,6 +16,7 @@ pub fn quaternary_search(data: &[i32], x: i32) -> Option<usize> {
             let points = _mm_i32gather_epi32::<4>(data.as_ptr().add(base), offsets);
             let mut cmps: __mmask8 = _mm_cmp_epi32_mask( points, _mm_set1_epi32(x), _MM_CMPINT_LE);
             // zero out the fourth comparison's bit
+            // note the order - lanes 0,1,2,3 will have bit results in the opposite order in the mask from right
             let mask: __mmask8 = 0b00001000;
             cmps = _kandn_mask8(mask, cmps);
 
@@ -49,6 +50,9 @@ mod test {
             let points = _mm_i32gather_epi32::<4>(data.as_ptr(), offsets);
             _mm_storeu_si128(lanes.as_mut_ptr().cast(), points);
             assert_eq!(lanes, [3, 5, 7, 7]);
+
+            let mut cmps: __mmask8 = _mm_cmp_epi32_mask( points, _mm_set1_epi32(6), _MM_CMPINT_LE);
+            assert_eq!(cmps, 0b00000011);
         }
     }
 
